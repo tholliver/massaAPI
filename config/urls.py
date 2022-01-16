@@ -14,12 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from lib2to3.pgen2.tokenize import StopTokenizing
-from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import path, include
-
- 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
