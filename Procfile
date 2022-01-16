@@ -1,1 +1,1 @@
-web: gunicorn massaAPI.wsgi --logfile=-
+web: gunicorn massaAPI.wsgi 
