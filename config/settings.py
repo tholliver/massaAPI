@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-from telnetlib import STATUS
-from tracemalloc import Statistic
 
 from decouple import config
 import django_heroku 
