@@ -13,14 +13,16 @@ import os
 from pathlib import Path
 
 from decouple import config
-import django_heroku 
+import django_heroku
 
-#Credentials 
+# Credentials
 DB_USERNAME = config('USERNAME')
 DB_PASSWORD = config('PASSWORD')
 DB_URL = config('URL_MONGO')
+HOST = config('HOST')
 DB_NAME = config('DB_NAME')
-   
+PORT = config('PORT')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,7 +41,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
-INSTALLED_APPS = [    
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,9 +53,10 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES':[
+    'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    
 }
 
 MIDDLEWARE = [
@@ -91,6 +94,20 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'authDjango',
+        'USER': 'postgres',
+        'PASSWORD': 'massa',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+
+'''
+# with mongo
+DATABASES = {
         'default': {
             'ENGINE': 'djongo',
             'NAME': DB_NAME,
@@ -102,6 +119,7 @@ DATABASES = {
             } 
     }
 }
+'''
 
 
 # Password validation
@@ -142,7 +160,9 @@ USE_TZ = True
 
 #STATIC_URL = '/static/'
 
-STATCIC_ROOT=os.path.join(BASE_DIR, 'staticfiles')
+STATCIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'massaAPI.User'
 
 django_heroku.settings(locals())
