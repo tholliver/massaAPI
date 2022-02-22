@@ -16,12 +16,12 @@ from decouple import config
 import django_heroku
 
 # Credentials
-DB_USERNAME = config('USERNAME')
+DB_USERNAME = config('USER_NAME')
 DB_PASSWORD = config('PASSWORD')
-DB_URL = config('URL_MONGO')
 HOST = config('HOST')
 DB_NAME = config('DB_NAME')
 PORT = config('PORT')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -96,11 +96,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'authDjango',
-        'USER': 'postgres',
-        'PASSWORD': 'massa',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': DB_NAME,
+        'USER': DB_USERNAME,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': HOST,
+        'PORT': PORT,
     }
 }
 
